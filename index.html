@@ -3,387 +3,460 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b0a">
+<meta name="theme-color" content="#050806">
 <title>SURYA — Premium Video Platform</title>
-
+<meta name="description" content="SURYA is an independent video platform for discovering and sharing videos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg:#080b0a;
-  --panel:#101613;
-  --panel2:#151e19;
-  --green:#16d995;
-  --text:#f3f7f4;
-  --muted:#84918a;
-  --border:#202c25;
+:root{
+  --bg:#050806;
+  --panel:#0b120e;
+  --panel2:#101a14;
+  --green:#00e58b;
+  --green2:#00b970;
+  --white:#f3fff8;
+  --muted:#91a69a;
+  --border:rgba(0,229,139,.15);
 }
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  background:var(--bg);color:var(--text);
-  font-family:Inter, sans-serif;min-height:100vh;
+  background:var(--bg);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
 }
+a{color:inherit;text-decoration:none}
 button,input{font:inherit}
 button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
 header{
-  height:76px;padding:0 6%;
-  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+  background:rgba(5,8,6,.88);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid var(--border);
-  position:sticky;top:0;background:#080b0af2;
-  backdrop-filter:blur(15px);z-index:10;
 }
-.logo{font:800 27px Manrope;letter-spacing:3px}
+.nav{
+  min-height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;
+}
+.logo{
+  font-family:Manrope,sans-serif;font-size:27px;
+  font-weight:800;letter-spacing:3px;
+}
 .logo span{color:var(--green)}
-.nav{display:flex;gap:28px;align-items:center}
-.nav a{color:#aab5ae;text-decoration:none;font-size:13px}
-.nav a:hover{color:var(--green)}
-.btn{
-  background:var(--green);color:#06110c;border:0;
-  padding:12px 19px;border-radius:9px;font-weight:800;
+.navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
+.navlinks a:hover{color:var(--green)}
+.navbtn,.primary{
+  border:0;border-radius:10px;padding:11px 18px;
+  background:var(--green);color:#03140c;font-weight:800;
 }
-.btn:hover{filter:brightness(1.12)}
-.outline{
-  background:transparent;color:var(--text);
-  border:1px solid var(--border);padding:11px 17px;
-  border-radius:9px;
-}
-main{max-width:1250px;margin:auto;padding:55px 6%}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
 .hero{
-  padding:65px 0 55px;
-  display:flex;justify-content:space-between;
-  align-items:center;gap:30px;flex-wrap:wrap;
+  padding:85px 0 65px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,229,139,.15),transparent 60%);
+  text-align:center;
 }
-.eyebrow{color:var(--green);font-size:12px;letter-spacing:3px;font-weight:800}
-h1{
-  font:800 clamp(42px,7vw,76px)/1.08 Manrope;
-  letter-spacing:-3px;margin:17px 0;
+.eyebrow{
+  display:inline-block;padding:6px 12px;
+  border:1px solid var(--border);border-radius:30px;
+  color:var(--green);font-size:12px;font-weight:700;
+  letter-spacing:1.5px;margin-bottom:22px;
 }
-h1 span{color:var(--green)}
-.hero p{color:var(--muted);line-height:1.8;max-width:510px}
-.hero-card{
-  width:260px;height:190px;border:1px solid #244333;
-  background:radial-gradient(circle at 70% 30%,#174d37,#101b15 65%);
-  border-radius:22px;display:grid;place-items:center;
-  box-shadow:0 20px 70px #0008;
+.hero h1{
+  font-family:Manrope,sans-serif;
+  font-size:clamp(42px,8vw,78px);
+  line-height:1.05;letter-spacing:-3px;
 }
-.hero-card strong{font:800 38px Manrope;letter-spacing:5px}
+.hero h1 span{
+  color:var(--green);
+  text-shadow:0 0 35px rgba(0,229,139,.3);
+}
+.hero p{
+  max-width:600px;margin:20px auto 28px;
+  color:var(--muted);font-size:16px;
+}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.secondary{
+  border:1px solid var(--border);background:#101812;
+  color:var(--white);padding:11px 18px;border-radius:10px;
+}
+.section{padding:55px 0}
 .section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin:35px 0 22px;gap:15px;flex-wrap:wrap;
+  display:flex;justify-content:space-between;
+  align-items:end;gap:15px;margin-bottom:24px;flex-wrap:wrap;
 }
-.section-head h2{font:700 23px Manrope}
-.section-head p{font-size:12px;color:var(--muted);margin-top:7px}
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
-  gap:20px;
+.section-head h2{
+  font:800 27px Manrope,sans-serif;
+}
+.section-head p{color:var(--muted);font-size:13px}
+.green{color:var(--green)}
+.search{
+  width:100%;max-width:340px;padding:12px 15px;
+  border:1px solid var(--border);border-radius:10px;
+  background:var(--panel);color:white;outline:none;
+}
+.search:focus{border-color:var(--green)}
+.video-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
 }
 .video-card{
   background:var(--panel);border:1px solid var(--border);
   border-radius:15px;overflow:hidden;transition:.25s;
 }
-.video-card:hover{transform:translateY(-4px);border-color:#286a4c}
-.thumb{
-  aspect-ratio:16/9;background:#17221b;
-  display:grid;place-items:center;overflow:hidden;
+.video-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,229,139,.5);
+  box-shadow:0 12px 35px rgba(0,229,139,.07);
 }
-.thumb video{width:100%;height:100%;object-fit:contain;background:#000}
-.play{
-  width:48px;height:48px;border-radius:50%;
-  background:#16d995;color:#06110c;
-  display:grid;place-items:center;font-size:19px;
+.video-card video{
+  width:100%;aspect-ratio:16/9;display:block;
+  background:#101712;object-fit:cover;
 }
-.video-info{padding:16px}
-.video-info h3{font-size:15px;margin-bottom:9px}
+.video-info{padding:15px}
+.video-info h3{font-size:15px;margin-bottom:5px}
 .video-info p{font-size:12px;color:var(--muted)}
 .empty{
-  grid-column:1/-1;text-align:center;padding:55px 15px;
-  background:var(--panel);border:1px dashed #304237;border-radius:15px;
-  color:var(--muted);line-height:2;
+  grid-column:1/-1;text-align:center;padding:40px;
+  border:1px dashed var(--border);border-radius:14px;
+  color:var(--muted);
+}
+.studio{
+  background:linear-gradient(145deg,#0c1710,#080d0a);
+  border:1px solid var(--border);border-radius:18px;
+  padding:25px;
+}
+.studio h2{font:800 25px Manrope,sans-serif;margin-bottom:5px}
+.studio>p{color:var(--muted);font-size:13px;margin-bottom:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;color:var(--muted)}
+.field input{
+  width:100%;padding:12px;border:1px solid var(--border);
+  background:#050a07;color:white;border-radius:9px;outline:none;
+}
+.field input:focus{border-color:var(--green)}
+.file-note{font-size:11px;color:var(--muted)}
+.notice{
+  border:1px solid rgba(0,229,139,.2);
+  background:rgba(0,229,139,.045);
+  border-radius:12px;padding:15px;margin-top:17px;
+  font-size:12px;color:#b7d2c2;
+}
+.notice strong{color:var(--green)}
+.dashboard-list{display:grid;gap:10px;margin-top:20px}
+.admin-video{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:12px;border:1px solid var(--border);
+  border-radius:10px;background:#080e0a;
+}
+.admin-video span{font-size:13px;overflow-wrap:anywhere}
+.delete{
+  background:#301413;color:#ff9a91;border:1px solid #54211e;
+  border-radius:7px;padding:7px 10px;font-size:12px;
+}
+.legal-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+.legal-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:19px;
+}
+.legal-card h3{font:700 16px Manrope;margin-bottom:9px}
+.legal-card p{color:var(--muted);font-size:13px}
+.legal-tag{
+  display:inline-block;margin-bottom:11px;
+  padding:4px 9px;border-radius:6px;
+  color:var(--green);background:rgba(0,229,139,.08);
+  font-size:10px;font-weight:800;letter-spacing:1px;
 }
 footer{
-  border-top:1px solid var(--border);padding:28px 6%;
-  text-align:center;color:var(--muted);font-size:12px;
+  margin-top:35px;border-top:1px solid var(--border);
+  padding:30px 0 25px;
 }
-#admin{
-  display:none;position:fixed;inset:0;z-index:30;
-  background:var(--bg);overflow:auto;
+.footer-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-brand p{color:var(--muted);font-size:12px;margin-top:5px}
+.footer-links{display:flex;gap:18px;color:var(--muted);font-size:12px}
+.copyright{
+  border-top:1px solid var(--border);margin-top:23px;
+  padding-top:17px;color:#71877a;font-size:11px;
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
 }
-.admin-top{
-  padding:22px 5%;display:flex;justify-content:space-between;
-  align-items:center;border-bottom:1px solid var(--border);
+#toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:var(--green);color:#03140c;padding:10px 16px;
+  border-radius:9px;font-weight:700;font-size:13px;
+  display:none;z-index:100;
 }
-.admin-wrap{max-width:1100px;margin:auto;padding:35px 5%}
-.admin-wrap h2{font:800 30px Manrope;margin-bottom:8px}
-.muted{color:var(--muted);font-size:13px}
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:15px;margin:28px 0;
+@media(max-width:750px){
+  .navlinks{display:none;position:absolute;top:72px;left:0;right:0;
+    padding:20px;background:#080e0a;flex-direction:column}
+  .navlinks.open{display:flex}
+  .menu{display:block}
+  .navbtn{display:none}
+  .video-grid{grid-template-columns:repeat(2,1fr)}
+  .legal-grid{grid-template-columns:1fr}
 }
-.stat,.upload-box{
-  background:var(--panel);border:1px solid var(--border);
-  padding:22px;border-radius:14px;
-}
-.stat small{color:var(--muted)}
-.stat strong{display:block;font:800 29px Manrope;margin-top:10px}
-.upload-box{max-width:650px}
-.upload-box h3{margin-bottom:20px}
-.field{margin:16px 0}
-.field label{display:block;font-size:12px;color:#aab5ae;margin-bottom:8px}
-.field input{
-  width:100%;padding:14px;background:#080e0a;
-  color:white;border:1px solid var(--border);border-radius:9px;
-}
-.field input[type=file]{padding:12px}
-.upload-box button{width:100%;margin-top:8px}
-.admin-list{margin-top:35px}
-.admin-row{
-  padding:15px;background:var(--panel);border:1px solid var(--border);
-  border-radius:10px;margin-top:10px;display:flex;
-  justify-content:space-between;align-items:center;gap:12px;
-}
-.delete{background:#351c20;color:#ff8b96;border:0;padding:9px;border-radius:7px}
-@media(max-width:650px){
-  header{padding:0 5%;height:66px}
-  .nav{gap:12px}
-  .nav a{display:none}
-  main{padding:30px 5%}
-  .hero{padding:45px 0}
-  .hero-card{width:100%;height:130px}
-  .stats{grid-template-columns:1fr}
-  h1{letter-spacing:-2px}
+@media(max-width:480px){
+  .video-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .studio{padding:17px}
+  .hero{padding:65px 0 45px}
+  .hero h1{letter-spacing:-2px}
 }
 </style>
 </head>
 
 <body>
-
 <header>
-  <div class="logo">SURYA<span>.</span></div>
-  <nav class="nav">
-    <a href="#home">HOME</a>
-    <a href="#videos">VIDEOS</a>
-    <button class="outline" onclick="openAdmin()">Admin Panel ↗</button>
-  </nav>
+  <div class="container nav">
+    <a class="logo" href="#">SURYA<span>.</span></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#videos">Videos</a>
+      <a href="#studio">Creator Studio</a>
+      <a href="#copyright">Copyright</a>
+    </nav>
+    <a class="navbtn" href="#videos">Explore Videos</a>
+    <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  </div>
 </header>
 
-<main id="home">
-  <section class="hero">
-    <div>
-      <div class="eyebrow">YOUR PREMIUM VIDEO SPACE</div>
-      <h1>Discover.<br><span>Watch.</span> Share.</h1>
-      <p>A premium destination for videos. Explore content, enjoy every moment and share what you love.</p>
-      <br>
-      <a href="#videos"><button class="btn">Explore Videos →</button></a>
-    </div>
-    <div class="hero-card"><strong>SURYA<span style="color:#16d995">.</span></strong></div>
-  </section>
-
-  <section id="videos">
-    <div class="section-head">
-      <div>
-        <h2>Latest Videos</h2>
-        <p>Explore the latest content on SURYA.</p>
-      </div>
-    </div>
-    <div class="grid" id="videoGrid">
-      <div class="empty">✦<br>No videos published yet.<br>New videos will appear here.</div>
-    </div>
-  </section>
-</main>
-
-<footer>© <span id="year"></span> SURYA. All rights reserved.</footer>
-
-<section id="admin">
-  <div class="admin-top">
-    <div class="logo">SURYA<span>.</span> <small style="font-size:11px;color:#84918a">ADMIN</small></div>
-    <button class="outline" onclick="closeAdmin()">✕ Close</button>
-  </div>
-
-  <div class="admin-wrap">
-    <div class="eyebrow">CONTROL CENTER</div>
-    <h2>Admin Dashboard</h2>
-    <p class="muted">Manage your video collection.</p>
-
-    <div class="stats">
-      <div class="stat"><small>Total Videos</small><strong id="total">0</strong></div>
-      <div class="stat"><small>Storage Mode</small><strong style="font-size:19px">Local Demo</strong></div>
-      <div class="stat"><small>Platform</small><strong style="font-size:19px">SURYA</strong></div>
-    </div>
-
-    <div class="upload-box">
-      <h3>＋ Upload New Video</h3>
-
-      <div class="field">
-        <label>VIDEO TITLE</label>
-        <input id="title" type="text" placeholder="Enter video title">
-      </div>
-
-      <div class="field">
-        <label>DISPLAY DATE</label>
-        <input id="displayDate" type="date">
-      </div>
-
-      <div class="field">
-        <label>SELECT VIDEO (MAX 2 MINUTES)</label>
-        <input id="videoFile" type="file" accept="video/*">
-      </div>
-
-      <button class="btn" onclick="addVideo()">Publish Video →</button>
-      <p class="muted" style="margin-top:13px;line-height:1.7">
-        Demo only: uploaded videos are previewed in this browser. They are not publicly hosted.
-      </p>
-    </div>
-
-    <div class="admin-list">
-      <h3>Video Management</h3>
-      <div id="adminList"></div>
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <div class="eyebrow">INDEPENDENT VIDEO PLATFORM</div>
+    <h1>WATCH. CREATE.<br><span>EXPERIENCE.</span></h1>
+    <p>Discover videos, explore creativity and experience entertainment on SURYA — a platform built for video lovers.</p>
+    <div class="hero-actions">
+      <a class="primary" href="#videos">Explore Videos ↗</a>
+      <a class="secondary" href="#studio">Creator Studio</a>
     </div>
   </div>
 </section>
 
+<section class="section container" id="videos">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">DISCOVER</div>
+      <h2>Latest <span class="green">Videos</span></h2>
+      <p>Explore the video collection on SURYA.</p>
+    </div>
+    <input class="search" id="search" placeholder="Search videos..." oninput="renderVideos()">
+  </div>
+  <div class="video-grid" id="videoGrid">
+    <div class="empty">No videos added yet. Check back soon.</div>
+  </div>
+</section>
+
+<section class="section container" id="studio">
+  <div class="studio">
+    <div class="eyebrow">CREATOR AREA</div>
+    <h2>Creator <span class="green">Studio</span></h2>
+    <p>Add a video preview to this browser's local gallery.</p>
+
+    <form id="uploadForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="videoTitle">Video title</label>
+          <input id="videoTitle" type="text" placeholder="Enter video title" maxlength="80" required>
+        </div>
+        <div class="field">
+          <label for="videoFile">Choose video file</label>
+          <input id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg" required>
+          <span class="file-note">Supported: MP4, WebM, OGG</span>
+        </div>
+        <div class="field full">
+          <button class="primary" type="submit">Add Video Preview +</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="notice">
+      <strong>Important:</strong> This is currently a browser-only demo. Videos are not uploaded to a public server and other visitors cannot see them. Preview links may disappear when the page is refreshed. A real upload system requires backend hosting and permanent video storage.
+    </div>
+    <div class="dashboard-list" id="adminList"></div>
+  </div>
+</section>
+
+<section class="section container" id="copyright">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">PROTECTION & OWNERSHIP</div>
+      <h2>Copyright <span class="green">Notice</span></h2>
+      <p>Respect original work. Respect creators.</p>
+    </div>
+  </div>
+
+  <div class="legal-grid">
+    <article class="legal-card">
+      <div class="legal-tag">COPYRIGHT WARNING</div>
+      <h3>Unauthorized Use Prohibited</h3>
+      <p>Do not copy, download, re-upload, reproduce, redistribute or commercially use original videos, graphics, branding or other protected materials from SURYA without permission from the respective copyright owner. Unauthorized use may result in copyright complaints, content removal requests or legal action where applicable.</p>
+    </article>
+
+    <article class="legal-card">
+      <div class="legal-tag">PLATFORM OWNERSHIP</div>
+      <h3>About SURYA</h3>
+      <p>SURYA is an independently developed video platform. Its original website design, branding, layout and original materials are protected to the extent owned by SURYA and applicable law. The platform name and design do not automatically establish ownership of third-party videos or music.</p>
+    </article>
+
+    <article class="legal-card">
+      <div class="legal-tag">CONTENT RIGHTS</div>
+      <h3>Respective Rights Holders</h3>
+      <p>All third-party videos, music, images, trademarks and other materials remain the property of their respective owners. They may only be used with appropriate permission, licence or other lawful authorization.</p>
+    </article>
+
+    <article class="legal-card">
+      <div class="legal-tag">REPORT AN ISSUE</div>
+      <h3>Copyright & Content Concerns</h3>
+      <p>If you believe content displayed on SURYA infringes your rights, identify the material and provide evidence of your ownership or authorization through the platform's official contact channel once one is established.</p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#">SURYA<span>.</span></a>
+        <p>Discover. Create. Experience.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#videos">Videos</a>
+        <a href="#studio">Studio</a>
+        <a href="#copyright">Legal</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© <span id="year"></span> SURYA. All rights reserved.</span>
+      <span>Independent Video Platform</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
 <script>
 let videos = [];
-let currentUrls = [];
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function openAdmin(){
-  document.getElementById("admin").style.display="block";
-  renderAdmin();
-}
-function closeAdmin(){
-  document.getElementById("admin").style.display="none";
+function toggleMenu(){
+  document.getElementById('navlinks').classList.toggle('open');
 }
 
-function addVideo(){
-  const title=document.getElementById("title").value.trim();
-  const date=document.getElementById("displayDate").value;
-  const file=document.getElementById("videoFile").files[0];
+document.querySelectorAll('.navlinks a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.getElementById('navlinks').classList.remove('open');
+  });
+});
 
-  if(!title || !date || !file){
-    alert("Please enter a title, date and select a video.");
-    return;
-  }
-  if(!file.type.startsWith("video/")){
-    alert("Please select a valid video.");
-    return;
-  }
-  if(file.size > 500*1024*1024){
-    alert("Demo upload limit is 500 MB.");
-    return;
-  }
-
-  const video=document.createElement("video");
-  video.preload="metadata";
-  const tempUrl=URL.createObjectURL(file);
-  video.src=tempUrl;
-
-  video.onloadedmetadata=()=>{
-    if(video.duration>120){
-      URL.revokeObjectURL(tempUrl);
-      alert("Video must be 2 minutes or shorter.");
-      return;
-    }
-
-    const id=Date.now().toString();
-    videos.push({id,title,date,file,url:tempUrl});
-    currentUrls.push(tempUrl);
-
-    document.getElementById("title").value="";
-    document.getElementById("displayDate").value="";
-    document.getElementById("videoFile").value="";
-
-    renderVideos();
-    renderAdmin();
-    alert("Video preview added in this browser!");
-  };
-  video.onerror=()=>{
-    URL.revokeObjectURL(tempUrl);
-    alert("Unable to read this video file.");
-  };
+function showToast(message){
+  const toast=document.getElementById('toast');
+  toast.textContent=message;
+  toast.style.display='block';
+  setTimeout(()=>toast.style.display='none',2500);
 }
 
 function renderVideos(){
-  const grid=document.getElementById("videoGrid");
-  grid.innerHTML="";
+  const grid=document.getElementById('videoGrid');
+  const query=document.getElementById('search').value.toLowerCase();
+  const filtered=videos.filter(v=>v.title.toLowerCase().includes(query));
 
-  if(videos.length===0){
-    grid.innerHTML='<div class="empty">✦<br>No videos published yet.<br>New videos will appear here.</div>';
+  grid.innerHTML='';
+
+  if(filtered.length===0){
+    grid.innerHTML='<div class="empty">No matching videos found.</div>';
     return;
   }
 
-  videos.forEach(v=>{
-    const card=document.createElement("article");
-    card.className="video-card";
+  filtered.forEach(video=>{
+    const card=document.createElement('article');
+    card.className='video-card';
 
-    const thumb=document.createElement("div");
-    thumb.className="thumb";
-
-    const player=document.createElement("video");
-    player.src=v.url;
+    const player=document.createElement('video');
+    player.src=video.url;
     player.controls=true;
+    player.preload='metadata';
     player.playsInline=true;
-    player.preload="metadata";
-    thumb.appendChild(player);
 
-    const info=document.createElement("div");
-    info.className="video-info";
+    const info=document.createElement('div');
+    info.className='video-info';
 
-    const heading=document.createElement("h3");
-    heading.textContent=v.title;
-    const date=document.createElement("p");
-    date.textContent="Published date: "+v.date;
+    const title=document.createElement('h3');
+    title.textContent=video.title;
 
-    info.append(heading,date);
-    card.append(thumb,info);
-    grid.appendChild(card);
+    const description=document.createElement('p');
+    description.textContent='Local preview';
+
+    info.append(title,description);
+    card.append(player,info);
+    grid.append(card);
   });
-
-  document.getElementById("total").textContent=videos.length;
 }
+
+document.getElementById('uploadForm').addEventListener('submit',function(event){
+  event.preventDefault();
+
+  const title=document.getElementById('videoTitle').value.trim();
+  const file=document.getElementById('videoFile').files[0];
+
+  if(!title||!file){
+    showToast('Please enter a title and choose a video.');
+    return;
+  }
+
+  const allowed=['video/mp4','video/webm','video/ogg'];
+  if(!allowed.includes(file.type)){
+    showToast('Please select an MP4, WebM or OGG video.');
+    return;
+  }
+
+  const url=URL.createObjectURL(file);
+  const id=Date.now();
+
+  videos.unshift({id,title,url,file});
+  renderVideos();
+  renderAdmin();
+
+  this.reset();
+  showToast('Local video preview added.');
+});
 
 function renderAdmin(){
-  document.getElementById("total").textContent=videos.length;
-  const list=document.getElementById("adminList");
-  list.innerHTML="";
+  const list=document.getElementById('adminList');
+  list.innerHTML='';
 
-  if(videos.length===0){
-    list.innerHTML='<p class="muted" style="margin-top:15px">No videos added yet.</p>';
-    return;
-  }
+  videos.forEach(video=>{
+    const row=document.createElement('div');
+    row.className='admin-video';
 
-  videos.forEach(v=>{
-    const row=document.createElement("div");
-    row.className="admin-row";
+    const title=document.createElement('span');
+    title.textContent=video.title;
 
-    const details=document.createElement("div");
-    const name=document.createElement("strong");
-    name.textContent=v.title;
-    const date=document.createElement("p");
-    date.className="muted";
-    date.textContent=v.date;
-    details.append(name,date);
-
-    const del=document.createElement("button");
-    del.className="delete";
-    del.textContent="Delete";
-    del.onclick=()=>{
-      if(confirm("Delete this video preview?")){
-        URL.revokeObjectURL(v.url);
-        videos=videos.filter(x=>x.id!==v.id);
-        renderVideos();
-        renderAdmin();
-      }
+    const remove=document.createElement('button');
+    remove.className='delete';
+    remove.textContent='Remove';
+    remove.onclick=()=>{
+      URL.revokeObjectURL(video.url);
+      videos=videos.filter(v=>v.id!==video.id);
+      renderVideos();
+      renderAdmin();
+      showToast('Preview removed.');
     };
 
-    row.append(details,del);
-    list.appendChild(row);
+    row.append(title,remove);
+    list.append(row);
   });
 }
 
-renderVideos();
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-
 </body>
 </html>
