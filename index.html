@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b0a">
+<title>SURYA — Premium Video Platform</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#080b0a;
+  --panel:#101613;
+  --panel2:#151e19;
+  --green:#16d995;
+  --text:#f3f7f4;
+  --muted:#84918a;
+  --border:#202c25;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:Inter, sans-serif;min-height:100vh;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  height:76px;padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:#080b0af2;
+  backdrop-filter:blur(15px);z-index:10;
+}
+.logo{font:800 27px Manrope;letter-spacing:3px}
+.logo span{color:var(--green)}
+.nav{display:flex;gap:28px;align-items:center}
+.nav a{color:#aab5ae;text-decoration:none;font-size:13px}
+.nav a:hover{color:var(--green)}
+.btn{
+  background:var(--green);color:#06110c;border:0;
+  padding:12px 19px;border-radius:9px;font-weight:800;
+}
+.btn:hover{filter:brightness(1.12)}
+.outline{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);padding:11px 17px;
+  border-radius:9px;
+}
+main{max-width:1250px;margin:auto;padding:55px 6%}
+.hero{
+  padding:65px 0 55px;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:30px;flex-wrap:wrap;
+}
+.eyebrow{color:var(--green);font-size:12px;letter-spacing:3px;font-weight:800}
+h1{
+  font:800 clamp(42px,7vw,76px)/1.08 Manrope;
+  letter-spacing:-3px;margin:17px 0;
+}
+h1 span{color:var(--green)}
+.hero p{color:var(--muted);line-height:1.8;max-width:510px}
+.hero-card{
+  width:260px;height:190px;border:1px solid #244333;
+  background:radial-gradient(circle at 70% 30%,#174d37,#101b15 65%);
+  border-radius:22px;display:grid;place-items:center;
+  box-shadow:0 20px 70px #0008;
+}
+.hero-card strong{font:800 38px Manrope;letter-spacing:5px}
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:35px 0 22px;gap:15px;flex-wrap:wrap;
+}
+.section-head h2{font:700 23px Manrope}
+.section-head p{font-size:12px;color:var(--muted);margin-top:7px}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
+  gap:20px;
+}
+.video-card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:15px;overflow:hidden;transition:.25s;
+}
+.video-card:hover{transform:translateY(-4px);border-color:#286a4c}
+.thumb{
+  aspect-ratio:16/9;background:#17221b;
+  display:grid;place-items:center;overflow:hidden;
+}
+.thumb video{width:100%;height:100%;object-fit:contain;background:#000}
+.play{
+  width:48px;height:48px;border-radius:50%;
+  background:#16d995;color:#06110c;
+  display:grid;place-items:center;font-size:19px;
+}
+.video-info{padding:16px}
+.video-info h3{font-size:15px;margin-bottom:9px}
+.video-info p{font-size:12px;color:var(--muted)}
+.empty{
+  grid-column:1/-1;text-align:center;padding:55px 15px;
+  background:var(--panel);border:1px dashed #304237;border-radius:15px;
+  color:var(--muted);line-height:2;
+}
+footer{
+  border-top:1px solid var(--border);padding:28px 6%;
+  text-align:center;color:var(--muted);font-size:12px;
+}
+#admin{
+  display:none;position:fixed;inset:0;z-index:30;
+  background:var(--bg);overflow:auto;
+}
+.admin-top{
+  padding:22px 5%;display:flex;justify-content:space-between;
+  align-items:center;border-bottom:1px solid var(--border);
+}
+.admin-wrap{max-width:1100px;margin:auto;padding:35px 5%}
+.admin-wrap h2{font:800 30px Manrope;margin-bottom:8px}
+.muted{color:var(--muted);font-size:13px}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:15px;margin:28px 0;
+}
+.stat,.upload-box{
+  background:var(--panel);border:1px solid var(--border);
+  padding:22px;border-radius:14px;
+}
+.stat small{color:var(--muted)}
+.stat strong{display:block;font:800 29px Manrope;margin-top:10px}
+.upload-box{max-width:650px}
+.upload-box h3{margin-bottom:20px}
+.field{margin:16px 0}
+.field label{display:block;font-size:12px;color:#aab5ae;margin-bottom:8px}
+.field input{
+  width:100%;padding:14px;background:#080e0a;
+  color:white;border:1px solid var(--border);border-radius:9px;
+}
+.field input[type=file]{padding:12px}
+.upload-box button{width:100%;margin-top:8px}
+.admin-list{margin-top:35px}
+.admin-row{
+  padding:15px;background:var(--panel);border:1px solid var(--border);
+  border-radius:10px;margin-top:10px;display:flex;
+  justify-content:space-between;align-items:center;gap:12px;
+}
+.delete{background:#351c20;color:#ff8b96;border:0;padding:9px;border-radius:7px}
+@media(max-width:650px){
+  header{padding:0 5%;height:66px}
+  .nav{gap:12px}
+  .nav a{display:none}
+  main{padding:30px 5%}
+  .hero{padding:45px 0}
+  .hero-card{width:100%;height:130px}
+  .stats{grid-template-columns:1fr}
+  h1{letter-spacing:-2px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">SURYA<span>.</span></div>
+  <nav class="nav">
+    <a href="#home">HOME</a>
+    <a href="#videos">VIDEOS</a>
+    <button class="outline" onclick="openAdmin()">Admin Panel ↗</button>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">YOUR PREMIUM VIDEO SPACE</div>
+      <h1>Discover.<br><span>Watch.</span> Share.</h1>
+      <p>A premium destination for videos. Explore content, enjoy every moment and share what you love.</p>
+      <br>
+      <a href="#videos"><button class="btn">Explore Videos →</button></a>
+    </div>
+    <div class="hero-card"><strong>SURYA<span style="color:#16d995">.</span></strong></div>
+  </section>
+
+  <section id="videos">
+    <div class="section-head">
+      <div>
+        <h2>Latest Videos</h2>
+        <p>Explore the latest content on SURYA.</p>
+      </div>
+    </div>
+    <div class="grid" id="videoGrid">
+      <div class="empty">✦<br>No videos published yet.<br>New videos will appear here.</div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> SURYA. All rights reserved.</footer>
+
+<section id="admin">
+  <div class="admin-top">
+    <div class="logo">SURYA<span>.</span> <small style="font-size:11px;color:#84918a">ADMIN</small></div>
+    <button class="outline" onclick="closeAdmin()">✕ Close</button>
+  </div>
+
+  <div class="admin-wrap">
+    <div class="eyebrow">CONTROL CENTER</div>
+    <h2>Admin Dashboard</h2>
+    <p class="muted">Manage your video collection.</p>
+
+    <div class="stats">
+      <div class="stat"><small>Total Videos</small><strong id="total">0</strong></div>
+      <div class="stat"><small>Storage Mode</small><strong style="font-size:19px">Local Demo</strong></div>
+      <div class="stat"><small>Platform</small><strong style="font-size:19px">SURYA</strong></div>
+    </div>
+
+    <div class="upload-box">
+      <h3>＋ Upload New Video</h3>
+
+      <div class="field">
+        <label>VIDEO TITLE</label>
+        <input id="title" type="text" placeholder="Enter video title">
+      </div>
+
+      <div class="field">
+        <label>DISPLAY DATE</label>
+        <input id="displayDate" type="date">
+      </div>
+
+      <div class="field">
+        <label>SELECT VIDEO (MAX 2 MINUTES)</label>
+        <input id="videoFile" type="file" accept="video/*">
+      </div>
+
+      <button class="btn" onclick="addVideo()">Publish Video →</button>
+      <p class="muted" style="margin-top:13px;line-height:1.7">
+        Demo only: uploaded videos are previewed in this browser. They are not publicly hosted.
+      </p>
+    </div>
+
+    <div class="admin-list">
+      <h3>Video Management</h3>
+      <div id="adminList"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+let videos = [];
+let currentUrls = [];
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function openAdmin(){
+  document.getElementById("admin").style.display="block";
+  renderAdmin();
+}
+function closeAdmin(){
+  document.getElementById("admin").style.display="none";
+}
+
+function addVideo(){
+  const title=document.getElementById("title").value.trim();
+  const date=document.getElementById("displayDate").value;
+  const file=document.getElementById("videoFile").files[0];
+
+  if(!title || !date || !file){
+    alert("Please enter a title, date and select a video.");
+    return;
+  }
+  if(!file.type.startsWith("video/")){
+    alert("Please select a valid video.");
+    return;
+  }
+  if(file.size > 500*1024*1024){
+    alert("Demo upload limit is 500 MB.");
+    return;
+  }
+
+  const video=document.createElement("video");
+  video.preload="metadata";
+  const tempUrl=URL.createObjectURL(file);
+  video.src=tempUrl;
+
+  video.onloadedmetadata=()=>{
+    if(video.duration>120){
+      URL.revokeObjectURL(tempUrl);
+      alert("Video must be 2 minutes or shorter.");
+      return;
+    }
+
+    const id=Date.now().toString();
+    videos.push({id,title,date,file,url:tempUrl});
+    currentUrls.push(tempUrl);
+
+    document.getElementById("title").value="";
+    document.getElementById("displayDate").value="";
+    document.getElementById("videoFile").value="";
+
+    renderVideos();
+    renderAdmin();
+    alert("Video preview added in this browser!");
+  };
+  video.onerror=()=>{
+    URL.revokeObjectURL(tempUrl);
+    alert("Unable to read this video file.");
+  };
+}
+
+function renderVideos(){
+  const grid=document.getElementById("videoGrid");
+  grid.innerHTML="";
+
+  if(videos.length===0){
+    grid.innerHTML='<div class="empty">✦<br>No videos published yet.<br>New videos will appear here.</div>';
+    return;
+  }
+
+  videos.forEach(v=>{
+    const card=document.createElement("article");
+    card.className="video-card";
+
+    const thumb=document.createElement("div");
+    thumb.className="thumb";
+
+    const player=document.createElement("video");
+    player.src=v.url;
+    player.controls=true;
+    player.playsInline=true;
+    player.preload="metadata";
+    thumb.appendChild(player);
+
+    const info=document.createElement("div");
+    info.className="video-info";
+
+    const heading=document.createElement("h3");
+    heading.textContent=v.title;
+    const date=document.createElement("p");
+    date.textContent="Published date: "+v.date;
+
+    info.append(heading,date);
+    card.append(thumb,info);
+    grid.appendChild(card);
+  });
+
+  document.getElementById("total").textContent=videos.length;
+}
+
+function renderAdmin(){
+  document.getElementById("total").textContent=videos.length;
+  const list=document.getElementById("adminList");
+  list.innerHTML="";
+
+  if(videos.length===0){
+    list.innerHTML='<p class="muted" style="margin-top:15px">No videos added yet.</p>';
+    return;
+  }
+
+  videos.forEach(v=>{
+    const row=document.createElement("div");
+    row.className="admin-row";
+
+    const details=document.createElement("div");
+    const name=document.createElement("strong");
+    name.textContent=v.title;
+    const date=document.createElement("p");
+    date.className="muted";
+    date.textContent=v.date;
+    details.append(name,date);
+
+    const del=document.createElement("button");
+    del.className="delete";
+    del.textContent="Delete";
+    del.onclick=()=>{
+      if(confirm("Delete this video preview?")){
+        URL.revokeObjectURL(v.url);
+        videos=videos.filter(x=>x.id!==v.id);
+        renderVideos();
+        renderAdmin();
+      }
+    };
+
+    row.append(details,del);
+    list.appendChild(row);
+  });
+}
+
+renderVideos();
+</script>
+
+</body>
+</html>
