@@ -89,9 +89,7 @@ header{
   display:flex;justify-content:space-between;
   align-items:end;gap:15px;margin-bottom:24px;flex-wrap:wrap;
 }
-.section-head h2{
-  font:800 27px Manrope,sans-serif;
-}
+.section-head h2{font:800 27px Manrope,sans-serif}
 .section-head p{color:var(--muted);font-size:13px}
 .green{color:var(--green)}
 .search{
@@ -192,9 +190,31 @@ footer{
   border-radius:9px;font-weight:700;font-size:13px;
   display:none;z-index:100;
 }
+.field input[type="date"],.field input[type="password"]{color-scheme:dark}
+.share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.small-btn{
+  border:1px solid var(--border);background:#101812;
+  color:var(--white);padding:8px 11px;border-radius:8px;font-size:12px;
+}
+.small-btn:hover{border-color:var(--green);color:var(--green)}
+.video-date{color:var(--green)!important;margin-top:5px}
+.watch-panel{
+  display:none;margin:20px auto;padding:18px;
+  border:1px solid var(--border);border-radius:16px;
+  background:var(--panel);max-width:900px;
+}
+.watch-panel video{
+  width:100%;max-height:70vh;background:#000;border-radius:12px;
+}
+.watch-panel h2{margin:12px 0 4px}
+.watch-panel p{color:var(--muted);font-size:13px}
+.admin-video{flex-wrap:wrap}
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
 @media(max-width:750px){
-  .navlinks{display:none;position:absolute;top:72px;left:0;right:0;
-    padding:20px;background:#080e0a;flex-direction:column}
+  .navlinks{
+    display:none;position:absolute;top:72px;left:0;right:0;
+    padding:20px;background:#080e0a;flex-direction:column;
+  }
   .navlinks.open{display:flex}
   .menu{display:block}
   .navbtn{display:none}
@@ -208,6 +228,7 @@ footer{
   .studio{padding:17px}
   .hero{padding:65px 0 45px}
   .hero h1{letter-spacing:-2px}
+  .share-row .small-btn{flex:1}
 }
 </style>
 </head>
@@ -258,7 +279,7 @@ footer{
   <div class="studio">
     <div class="eyebrow">CREATOR AREA</div>
     <h2>Creator <span class="green">Studio</span></h2>
-    <p>Add a video preview to this browser's local gallery.</p>
+    <p>Prepare video details, display date and sharing options.</p>
 
     <form id="uploadForm">
       <div class="form-grid">
@@ -266,23 +287,38 @@ footer{
           <label for="videoTitle">Video title</label>
           <input id="videoTitle" type="text" placeholder="Enter video title" maxlength="80" required>
         </div>
+
         <div class="field">
           <label for="videoFile">Choose video file</label>
           <input id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg" required>
           <span class="file-note">Supported: MP4, WebM, OGG</span>
         </div>
+
+        <div class="field">
+          <label for="videoDate">Display date (custom)</label>
+          <input id="videoDate" type="date" required>
+          <span class="file-note">Public page par yahi date dikhai jayegi.</span>
+        </div>
+
+        <div class="field">
+          <label for="uploadPassword">Upload password</label>
+          <input id="uploadPassword" type="password" placeholder="Enter upload password" autocomplete="current-password" required>
+          <span class="file-note">Password verification server se connect hogi.</span>
+        </div>
+
         <div class="field full">
-          <button class="primary" type="submit">Add Video Preview +</button>
+          <button class="primary" type="submit">Continue to Upload +</button>
         </div>
       </div>
     </form>
 
     <div class="notice">
-  <strong>SURYA PLATFORM NOTICE</strong>
-  <p>Welcome to SURYA — your destination for discovering and enjoying quality video content.</p>
-  <p>Explore videos, experience creativity and enjoy a seamless viewing experience.</p>
-  <strong>Watch. Discover. Experience.</strong>
-</div>
+      <strong>SURYA CREATOR FEATURES</strong>
+      <p>Upload videos, set a display date, and prepare a unique share link for every video.</p>
+      <p>Public viewers will be able to open a shared link and watch its video without creating an account.</p>
+      <strong>Watch. Discover. Experience.</strong>
+    </div>
+
     <div class="dashboard-list" id="adminList"></div>
   </div>
 </section>
@@ -323,6 +359,17 @@ footer{
   </div>
 </section>
 </main>
+
+<section class="container watch-panel" id="watchPanel" aria-live="polite">
+  <div class="eyebrow">SURYA PLAYER</div>
+  <video id="watchPlayer" controls playsinline></video>
+  <h2 id="watchTitle">Video</h2>
+  <p id="watchDate"></p>
+  <div class="share-row">
+    <button class="small-btn" id="watchCopy" type="button">Copy video link</button>
+    <button class="small-btn" id="watchShare" type="button">Share video</button>
+  </div>
+</section>
 
 <footer>
   <div class="container">
@@ -367,6 +414,14 @@ function showToast(message){
   setTimeout(()=>toast.style.display='none',2500);
 }
 
+function makeVideoLink(id){
+  const url=new URL(window.location.href);
+  url.search='';
+  url.hash='';
+  url.searchParams.set('video',id);
+  return url.toString();
+}
+
 function renderVideos(){
   const grid=document.getElementById('videoGrid');
   const query=document.getElementById('search').value.toLowerCase();
@@ -375,7 +430,7 @@ function renderVideos(){
   grid.innerHTML='';
 
   if(filtered.length===0){
-    grid.innerHTML='<div class="empty">No matching videos found.</div>';
+    grid.innerHTML='<div class="empty">No videos added yet.</div>';
     return;
   }
 
@@ -395,13 +450,81 @@ function renderVideos(){
     const title=document.createElement('h3');
     title.textContent=video.title;
 
-    const description=document.createElement('p');
-    description.textContent='Local preview';
+    const date=document.createElement('p');
+    date.className='video-date';
+    date.textContent='Published date: '+video.displayDate;
 
-    info.append(title,description);
+    const shareRow=document.createElement('div');
+    shareRow.className='share-row';
+
+    const copy=document.createElement('button');
+    copy.className='small-btn';
+    copy.type='button';
+    copy.textContent='Copy link';
+    copy.onclick=()=>copyVideoLink(video.id);
+
+    const share=document.createElement('button');
+    share.className='small-btn';
+    share.type='button';
+    share.textContent='Share';
+    share.onclick=()=>shareVideo(video.id);
+
+    const open=document.createElement('button');
+    open.className='small-btn';
+    open.type='button';
+    open.textContent='Open player';
+    open.onclick=()=>openWatch(video.id);
+
+    shareRow.append(copy,share,open);
+    info.append(title,date,shareRow);
     card.append(player,info);
     grid.append(card);
   });
+}
+
+function copyVideoLink(id){
+  const link=makeVideoLink(id);
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(link)
+      .then(()=>showToast('Video link copied!'))
+      .catch(()=>showToast(link));
+  }else{
+    showToast('Link: '+link);
+  }
+}
+
+async function shareVideo(id){
+  const link=makeVideoLink(id);
+
+  if(navigator.share){
+    try{
+      await navigator.share({title:'Watch on SURYA',url:link});
+    }catch(error){}
+  }else{
+    copyVideoLink(id);
+  }
+}
+
+function openWatch(id){
+  const video=videos.find(item=>String(item.id)===String(id));
+  const panel=document.getElementById('watchPanel');
+
+  if(!video){
+    panel.style.display='block';
+    document.getElementById('watchTitle').textContent='Video not available in this browser session';
+    document.getElementById('watchDate').textContent='Permanent public playback will work after video storage and database are connected.';
+    document.getElementById('watchPlayer').removeAttribute('src');
+  }else{
+    panel.style.display='block';
+    document.getElementById('watchPlayer').src=video.url;
+    document.getElementById('watchTitle').textContent=video.title;
+    document.getElementById('watchDate').textContent='Published date: '+video.displayDate;
+    document.getElementById('watchCopy').onclick=()=>copyVideoLink(video.id);
+    document.getElementById('watchShare').onclick=()=>shareVideo(video.id);
+  }
+
+  panel.scrollIntoView({behavior:'smooth'});
 }
 
 document.getElementById('uploadForm').addEventListener('submit',function(event){
@@ -409,27 +532,28 @@ document.getElementById('uploadForm').addEventListener('submit',function(event){
 
   const title=document.getElementById('videoTitle').value.trim();
   const file=document.getElementById('videoFile').files[0];
+  const displayDate=document.getElementById('videoDate').value;
+  const password=document.getElementById('uploadPassword').value;
 
-  if(!title||!file){
-    showToast('Please enter a title and choose a video.');
+  if(!title||!file||!displayDate||!password){
+    showToast('Please complete all upload fields.');
     return;
   }
 
   const allowed=['video/mp4','video/webm','video/ogg'];
+
   if(!allowed.includes(file.type)){
     showToast('Please select an MP4, WebM or OGG video.');
     return;
   }
 
-  const url=URL.createObjectURL(file);
-  const id=Date.now();
-
-  videos.unshift({id,title,url,file});
-  renderVideos();
-  renderAdmin();
-
-  this.reset();
-  showToast('Local video preview added.');
+  /*
+    SECURITY NOTE:
+    This is the front-end structure only. Do not put a real password here.
+    A secure backend must verify the password and save the video permanently.
+    Until that backend is connected, this browser preview is not a public upload.
+  */
+  showToast('Upload backend connection is required to verify password and publish video.');
 });
 
 function renderAdmin(){
@@ -441,11 +565,21 @@ function renderAdmin(){
     row.className='admin-video';
 
     const title=document.createElement('span');
-    title.textContent=video.title;
+    title.textContent=video.title+' — '+video.displayDate;
+
+    const actions=document.createElement('div');
+    actions.className='admin-actions';
+
+    const copy=document.createElement('button');
+    copy.className='small-btn';
+    copy.type='button';
+    copy.textContent='Copy link';
+    copy.onclick=()=>copyVideoLink(video.id);
 
     const remove=document.createElement('button');
     remove.className='delete';
     remove.textContent='Remove';
+
     remove.onclick=()=>{
       URL.revokeObjectURL(video.url);
       videos=videos.filter(v=>v.id!==video.id);
@@ -454,12 +588,19 @@ function renderAdmin(){
       showToast('Preview removed.');
     };
 
-    row.append(title,remove);
+    actions.append(copy,remove);
+    row.append(title,actions);
     list.append(row);
   });
 }
 
 document.getElementById('year').textContent=new Date().getFullYear();
+
+const requestedVideo=new URLSearchParams(window.location.search).get('video');
+
+if(requestedVideo){
+  openWatch(requestedVideo);
+}
 </script>
 </body>
 </html>
