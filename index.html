@@ -1,234 +1,234 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050806">
 <title>SURYA — Premium Video Platform</title>
-<meta name="description" content="SURYA is an independent video platform for discovering and sharing videos.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Watch and discover videos on SURYA.">
 
 <style>
 :root{
   --bg:#050806;
-  --panel:#0b120e;
-  --panel2:#101a14;
+  --panel:#0c1510;
   --green:#00e58b;
-  --green2:#00b970;
   --white:#f3fff8;
   --muted:#91a69a;
-  --border:rgba(0,229,139,.15);
+  --border:rgba(0,229,139,.18);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
+  margin:0;
   background:var(--bg);
   color:var(--white);
-  font-family:'DM Sans',sans-serif;
+  font-family:Arial,sans-serif;
   line-height:1.6;
 }
-a{color:inherit;text-decoration:none}
+.container{width:min(1120px,92%);margin:auto}
+a{text-decoration:none;color:inherit}
 button,input{font:inherit}
 button{cursor:pointer}
-.container{width:min(1120px,92%);margin:auto}
 header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(5,8,6,.88);
-  backdrop-filter:blur(18px);
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#050806ed;
   border-bottom:1px solid var(--border);
 }
 .nav{
-  min-height:72px;display:flex;align-items:center;
-  justify-content:space-between;gap:20px;
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 .logo{
-  font-family:Manrope,sans-serif;font-size:27px;
-  font-weight:800;letter-spacing:3px;
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:3px;
 }
-.logo span{color:var(--green)}
-.navlinks{display:flex;gap:24px;color:var(--muted);font-size:14px}
-.navlinks a:hover{color:var(--green)}
-.navbtn,.primary{
-  border:0;border-radius:10px;padding:11px 18px;
-  background:var(--green);color:#03140c;font-weight:800;
+.logo span,.green{color:var(--green)}
+.links{display:flex;gap:20px;font-size:14px}
+.primary{
+  display:inline-block;
+  background:var(--green);
+  color:#03140c;
+  border:0;
+  border-radius:10px;
+  padding:12px 20px;
+  font-weight:800;
 }
-.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.secondary,.small-btn{
+  background:#101a14;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:10px 14px;
+}
 .hero{
-  padding:85px 0 65px;
-  background:radial-gradient(ellipse at 50% 0%,rgba(0,229,139,.15),transparent 60%);
   text-align:center;
-}
-.eyebrow{
-  display:inline-block;padding:6px 12px;
-  border:1px solid var(--border);border-radius:30px;
-  color:var(--green);font-size:12px;font-weight:700;
-  letter-spacing:1.5px;margin-bottom:22px;
+  padding:85px 0;
+  background:radial-gradient(
+    ellipse at top,
+    #00e58b20,
+    transparent 65%
+  );
 }
 .hero h1{
-  font-family:Manrope,sans-serif;
-  font-size:clamp(42px,8vw,78px);
-  line-height:1.05;letter-spacing:-3px;
-}
-.hero h1 span{
-  color:var(--green);
-  text-shadow:0 0 35px rgba(0,229,139,.3);
+  font-size:clamp(38px,8vw,75px);
+  line-height:1.1;
+  letter-spacing:-2px;
 }
 .hero p{
-  max-width:600px;margin:20px auto 28px;
-  color:var(--muted);font-size:16px;
-}
-.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.secondary{
-  border:1px solid var(--border);background:#101812;
-  color:var(--white);padding:11px 18px;border-radius:10px;
-}
-.section{padding:55px 0}
-.section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;gap:15px;margin-bottom:24px;flex-wrap:wrap;
-}
-.section-head h2{font:800 27px Manrope,sans-serif}
-.section-head p{color:var(--muted);font-size:13px}
-.green{color:var(--green)}
-.search{
-  width:100%;max-width:340px;padding:12px 15px;
-  border:1px solid var(--border);border-radius:10px;
-  background:var(--panel);color:white;outline:none;
-}
-.search:focus{border-color:var(--green)}
-.video-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
-}
-.video-card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;overflow:hidden;transition:.25s;
-}
-.video-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(0,229,139,.5);
-  box-shadow:0 12px 35px rgba(0,229,139,.07);
-}
-.video-card video{
-  width:100%;aspect-ratio:16/9;display:block;
-  background:#101712;object-fit:cover;
-}
-.video-info{padding:15px}
-.video-info h3{font-size:15px;margin-bottom:5px}
-.video-info p{font-size:12px;color:var(--muted)}
-.empty{
-  grid-column:1/-1;text-align:center;padding:40px;
-  border:1px dashed var(--border);border-radius:14px;
+  max-width:570px;
+  margin:20px auto;
   color:var(--muted);
 }
-.studio{
-  background:linear-gradient(145deg,#0c1710,#080d0a);
-  border:1px solid var(--border);border-radius:18px;
-  padding:25px;
+.hero-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
-.studio h2{font:800 25px Manrope,sans-serif;margin-bottom:5px}
-.studio>p{color:var(--muted);font-size:13px;margin-bottom:22px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.eyebrow{
+  color:var(--green);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.section{padding:50px 0}
+.section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.section-head h2{font-size:28px}
+.search,input{
+  background:#07100a;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:12px;
+}
+.search{width:min(340px,100%)}
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+.video-card,.studio,.legal-card,.watch-panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+.video-card video{
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  object-fit:cover;
+}
+.video-info{padding:15px}
+.video-info h3{margin:0 0 5px}
+.video-date{font-size:12px;color:var(--green)}
+.share-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+}
+.small-btn{font-size:12px;padding:8px 11px}
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
+}
+.studio{padding:25px}
+.studio>p{color:var(--muted)}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
 .field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;color:var(--muted)}
 .field.full{grid-column:1/-1}
-.field label{font-size:12px;color:var(--muted)}
-.field input{
-  width:100%;padding:12px;border:1px solid var(--border);
-  background:#050a07;color:white;border-radius:9px;outline:none;
-}
-.field input:focus{border-color:var(--green)}
 .file-note{font-size:11px;color:var(--muted)}
 .notice{
-  border:1px solid rgba(0,229,139,.2);
-  background:rgba(0,229,139,.045);
-  border-radius:12px;padding:15px;margin-top:17px;
-  font-size:12px;color:#b7d2c2;
+  background:#00e58b0c;
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:12px;
+  margin-top:20px;
+  font-size:13px;
 }
 .notice strong{color:var(--green)}
 .dashboard-list{display:grid;gap:10px;margin-top:20px}
 .admin-video{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;padding:12px;border:1px solid var(--border);
-  border-radius:10px;background:#080e0a;
+  padding:12px;
+  background:#080e0a;
+  border:1px solid var(--border);
+  border-radius:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
 }
-.admin-video span{font-size:13px;overflow-wrap:anywhere}
-.delete{
-  background:#301413;color:#ff9a91;border:1px solid #54211e;
-  border-radius:7px;padding:7px 10px;font-size:12px;
-}
-.legal-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;
-}
-.legal-card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:14px;padding:19px;
-}
-.legal-card h3{font:700 16px Manrope;margin-bottom:9px}
-.legal-card p{color:var(--muted);font-size:13px}
-.legal-tag{
-  display:inline-block;margin-bottom:11px;
-  padding:4px 9px;border-radius:6px;
-  color:var(--green);background:rgba(0,229,139,.08);
-  font-size:10px;font-weight:800;letter-spacing:1px;
-}
-footer{
-  margin-top:35px;border-top:1px solid var(--border);
-  padding:30px 0 25px;
-}
-.footer-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.footer-brand p{color:var(--muted);font-size:12px;margin-top:5px}
-.footer-links{display:flex;gap:18px;color:var(--muted);font-size:12px}
-.copyright{
-  border-top:1px solid var(--border);margin-top:23px;
-  padding-top:17px;color:#71877a;font-size:11px;
-  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
-}
-#toast{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  background:var(--green);color:#03140c;padding:10px 16px;
-  border-radius:9px;font-weight:700;font-size:13px;
-  display:none;z-index:100;
-}
-.field input[type="date"],.field input[type="password"]{color-scheme:dark}
-.share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.small-btn{
-  border:1px solid var(--border);background:#101812;
-  color:var(--white);padding:8px 11px;border-radius:8px;font-size:12px;
-}
-.small-btn:hover{border-color:var(--green);color:var(--green)}
-.video-date{color:var(--green)!important;margin-top:5px}
 .watch-panel{
-  display:none;margin:20px auto;padding:18px;
-  border:1px solid var(--border);border-radius:16px;
-  background:var(--panel);max-width:900px;
+  display:none;
+  padding:20px;
+  margin:25px auto;
 }
 .watch-panel video{
-  width:100%;max-height:70vh;background:#000;border-radius:12px;
+  width:100%;
+  max-height:70vh;
+  background:black;
+  border-radius:10px;
 }
-.watch-panel h2{margin:12px 0 4px}
-.watch-panel p{color:var(--muted);font-size:13px}
-.admin-video{flex-wrap:wrap}
-.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
+.legal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+.legal-card{padding:20px}
+.legal-card p{font-size:13px;color:var(--muted)}
+footer{
+  padding:30px 0;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:12px;
+}
+#toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--green);
+  color:#03140c;
+  padding:12px 18px;
+  border-radius:10px;
+  display:none;
+  z-index:100;
+  max-width:90%;
+}
 @media(max-width:750px){
-  .navlinks{
-    display:none;position:absolute;top:72px;left:0;right:0;
-    padding:20px;background:#080e0a;flex-direction:column;
-  }
-  .navlinks.open{display:flex}
-  .menu{display:block}
-  .navbtn{display:none}
   .video-grid{grid-template-columns:repeat(2,1fr)}
-  .legal-grid{grid-template-columns:1fr}
+  .links{gap:10px;font-size:12px}
 }
 @media(max-width:480px){
-  .video-grid{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
+  .video-grid,.form-grid,.legal-grid{
+    grid-template-columns:1fr;
+  }
   .field.full{grid-column:auto}
-  .studio{padding:17px}
-  .hero{padding:65px 0 45px}
-  .hero h1{letter-spacing:-2px}
-  .share-row .small-btn{flex:1}
+  .hero{padding:60px 0}
 }
 </style>
 </head>
@@ -236,15 +236,12 @@ footer{
 <body>
 <header>
   <div class="container nav">
-    <a class="logo" href="#">SURYA<span>.</span></a>
-    <nav class="navlinks" id="navlinks">
-      <a href="#home">Home</a>
+    <a href="#home" class="logo">SURYA<span>.</span></a>
+    <nav class="links">
       <a href="#videos">Videos</a>
-      <a href="#studio">Creator Studio</a>
+      <a href="#studio">Studio</a>
       <a href="#copyright">Copyright</a>
     </nav>
-    <a class="navbtn" href="#videos">Explore Videos</a>
-    <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
   </div>
 </header>
 
@@ -252,10 +249,10 @@ footer{
 <section class="hero" id="home">
   <div class="container">
     <div class="eyebrow">INDEPENDENT VIDEO PLATFORM</div>
-    <h1>WATCH. CREATE.<br><span>EXPERIENCE.</span></h1>
-    <p>Discover videos, explore creativity and experience entertainment on SURYA — a platform built for video lovers.</p>
+    <h1>WATCH. CREATE.<br><span class="green">EXPERIENCE.</span></h1>
+    <p>Discover videos, explore creativity and experience entertainment on SURYA.</p>
     <div class="hero-actions">
-      <a class="primary" href="#videos">Explore Videos ↗</a>
+      <a class="primary" href="#videos">Explore Videos</a>
       <a class="secondary" href="#studio">Creator Studio</a>
     </div>
   </div>
@@ -266,12 +263,11 @@ footer{
     <div>
       <div class="eyebrow">DISCOVER</div>
       <h2>Latest <span class="green">Videos</span></h2>
-      <p>Explore the video collection on SURYA.</p>
     </div>
-    <input class="search" id="search" placeholder="Search videos..." oninput="renderVideos()">
+    <input class="search" id="search" placeholder="Search videos...">
   </div>
   <div class="video-grid" id="videoGrid">
-    <div class="empty">No videos added yet. Check back soon.</div>
+    <div class="empty">Loading videos...</div>
   </div>
 </section>
 
@@ -279,44 +275,40 @@ footer{
   <div class="studio">
     <div class="eyebrow">CREATOR AREA</div>
     <h2>Creator <span class="green">Studio</span></h2>
-    <p>Prepare video details, display date and sharing options.</p>
+    <p>Upload your video with password protection.</p>
 
     <form id="uploadForm">
       <div class="form-grid">
         <div class="field">
           <label for="videoTitle">Video title</label>
-          <input id="videoTitle" type="text" placeholder="Enter video title" maxlength="80" required>
+          <input id="videoTitle" type="text" maxlength="80" required>
         </div>
-
         <div class="field">
-          <label for="videoFile">Choose video file</label>
-          <input id="videoFile" type="file" accept="video/mp4,video/webm,video/ogg" required>
-          <span class="file-note">Supported: MP4, WebM, OGG</span>
+          <label for="videoFile">Choose video</label>
+          <input id="videoFile" type="file"
+            accept="video/mp4,video/webm,video/quicktime" required>
+          <span class="file-note">MP4, WebM or MOV — maximum 50 MB</span>
         </div>
-
         <div class="field">
-          <label for="videoDate">Display date (custom)</label>
+          <label for="videoDate">Display date</label>
           <input id="videoDate" type="date" required>
-          <span class="file-note">Public page par yahi date dikhai jayegi.</span>
         </div>
-
         <div class="field">
           <label for="uploadPassword">Upload password</label>
-          <input id="uploadPassword" type="password" placeholder="Enter upload password" autocomplete="current-password" required>
-          <span class="file-note">Password verification server se connect hogi.</span>
+          <input id="uploadPassword" type="password" required>
         </div>
-
         <div class="field full">
-          <button class="primary" type="submit">Continue to Upload +</button>
+          <button class="primary" id="uploadButton" type="submit">
+            Upload Video +
+          </button>
         </div>
       </div>
     </form>
 
     <div class="notice">
       <strong>SURYA CREATOR FEATURES</strong>
-      <p>Upload videos, set a display date, and prepare a unique share link for every video.</p>
-      <p>Public viewers will be able to open a shared link and watch its video without creating an account.</p>
-      <strong>Watch. Discover. Experience.</strong>
+      <p>Upload videos, choose a display date and share a unique link.</p>
+      <p>Public viewers can watch without signing in.</p>
     </div>
 
     <div class="dashboard-list" id="adminList"></div>
@@ -324,283 +316,335 @@ footer{
 </section>
 
 <section class="section container" id="copyright">
-  <div class="section-head">
-    <div>
-      <div class="eyebrow">PROTECTION & OWNERSHIP</div>
-      <h2>Copyright <span class="green">Notice</span></h2>
-      <p>Respect original work. Respect creators.</p>
-    </div>
-  </div>
-
+  <div class="eyebrow">CONTENT RIGHTS</div>
+  <h2>Copyright <span class="green">Notice</span></h2>
   <div class="legal-grid">
     <article class="legal-card">
-      <div class="legal-tag">COPYRIGHT WARNING</div>
-      <h3>Unauthorized Use Prohibited</h3>
-      <p>Do not copy, download, re-upload, reproduce, redistribute or commercially use original videos, graphics, branding or other protected materials from SURYA without permission from the respective copyright owner. Unauthorized use may result in copyright complaints, content removal requests or legal action where applicable.</p>
+      <h3>Unauthorized Use</h3>
+      <p>Do not copy, redistribute or commercially use protected content without permission from its rights holder.</p>
     </article>
-
     <article class="legal-card">
-      <div class="legal-tag">PLATFORM OWNERSHIP</div>
       <h3>About SURYA</h3>
-      <p>SURYA is an independently developed video platform. Its original website design, branding, layout and original materials are protected to the extent owned by SURYA and applicable law. The platform name and design do not automatically establish ownership of third-party videos or music.</p>
-    </article>
-
-    <article class="legal-card">
-      <div class="legal-tag">CONTENT RIGHTS</div>
-      <h3>Respective Rights Holders</h3>
-      <p>All third-party videos, music, images, trademarks and other materials remain the property of their respective owners. They may only be used with appropriate permission, licence or other lawful authorization.</p>
-    </article>
-
-    <article class="legal-card">
-      <div class="legal-tag">REPORT AN ISSUE</div>
-      <h3>Copyright & Content Concerns</h3>
-      <p>If you believe content displayed on SURYA infringes your rights, identify the material and provide evidence of your ownership or authorization through the platform's official contact channel once one is established.</p>
+      <p>SURYA is an independent video platform. Third-party content remains the property of its respective owners.</p>
     </article>
   </div>
 </section>
 </main>
 
-<section class="container watch-panel" id="watchPanel" aria-live="polite">
+<section class="container watch-panel" id="watchPanel">
   <div class="eyebrow">SURYA PLAYER</div>
   <video id="watchPlayer" controls playsinline></video>
   <h2 id="watchTitle">Video</h2>
   <p id="watchDate"></p>
   <div class="share-row">
-    <button class="small-btn" id="watchCopy" type="button">Copy video link</button>
-    <button class="small-btn" id="watchShare" type="button">Share video</button>
+    <button class="small-btn" id="watchCopy">Copy link</button>
+    <button class="small-btn" id="watchShare">Share</button>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="logo" href="#">SURYA<span>.</span></a>
-        <p>Discover. Create. Experience.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#home">Home</a>
-        <a href="#videos">Videos</a>
-        <a href="#studio">Studio</a>
-        <a href="#copyright">Legal</a>
-      </div>
-    </div>
-    <div class="copyright">
-      <span>© <span id="year"></span> SURYA. All rights reserved.</span>
-      <span>Independent Video Platform</span>
-    </div>
+    <a class="logo" href="#home">SURYA<span>.</span></a>
+    <p>Discover. Create. Experience.</p>
+    <p>© <span id="year"></span> SURYA. All rights reserved.</p>
   </div>
 </footer>
 
 <div id="toast"></div>
 
 <script>
+/*
+  SUPABASE CONFIGURATION
+
+  Paste your Project URL and Publishable Key below.
+
+  Never paste a service-role key or secret key here.
+*/
+const SUPABASE_URL = "PASTE_SUPABASE_PROJECT_URL_HERE";
+const SUPABASE_PUBLISHABLE_KEY = "PASTE_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+const UPLOAD_FUNCTION = "surya-upload";
 let videos = [];
 
-function toggleMenu(){
-  document.getElementById('navlinks').classList.toggle('open');
+const $ = id => document.getElementById(id);
+
+function configured(){
+  return SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("PASTE_") &&
+    !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_");
 }
 
-document.querySelectorAll('.navlinks a').forEach(link=>{
-  link.addEventListener('click',()=>{
-    document.getElementById('navlinks').classList.remove('open');
-  });
-});
-
-function showToast(message){
-  const toast=document.getElementById('toast');
-  toast.textContent=message;
-  toast.style.display='block';
-  setTimeout(()=>toast.style.display='none',2500);
+function toast(message){
+  const element = $("toast");
+  element.textContent = message;
+  element.style.display = "block";
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(()=>{
+    element.style.display = "none";
+  },4000);
 }
 
-function makeVideoLink(id){
-  const url=new URL(window.location.href);
-  url.search='';
-  url.hash='';
-  url.searchParams.set('video',id);
+function videoLink(id){
+  const url = new URL(window.location.href);
+  url.search = "";
+  url.hash = "";
+  url.searchParams.set("video",id);
   return url.toString();
 }
 
-function renderVideos(){
-  const grid=document.getElementById('videoGrid');
-  const query=document.getElementById('search').value.toLowerCase();
-  const filtered=videos.filter(v=>v.title.toLowerCase().includes(query));
+function normalize(row){
+  return {
+    id:row.id,
+    title:row.title,
+    url:row.video_url,
+    date:row.display_date
+  };
+}
 
-  grid.innerHTML='';
-
-  if(filtered.length===0){
-    grid.innerHTML='<div class="empty">No videos added yet.</div>';
+async function loadVideos(){
+  if(!configured()){
+    $("videoGrid").innerHTML =
+      '<div class="empty">Supabase configuration required.</div>';
     return;
   }
 
-  filtered.forEach(video=>{
-    const card=document.createElement('article');
-    card.className='video-card';
+  try{
+    const endpoint =
+      SUPABASE_URL +
+      "/rest/v1/videos?select=id,title,video_url,display_date" +
+      "&order=created_at.desc";
 
-    const player=document.createElement('video');
-    player.src=video.url;
-    player.controls=true;
-    player.preload='metadata';
-    player.playsInline=true;
+    const result = await fetch(endpoint,{
+      headers:{
+        apikey:SUPABASE_PUBLISHABLE_KEY
+      }
+    });
 
-    const info=document.createElement('div');
-    info.className='video-info';
+    if(!result.ok){
+      throw new Error("Cannot load videos: " + result.status);
+    }
 
-    const title=document.createElement('h3');
-    title.textContent=video.title;
+    const rows = await result.json();
+    videos = rows.map(normalize);
 
-    const date=document.createElement('p');
-    date.className='video-date';
-    date.textContent='Published date: '+video.displayDate;
+    renderVideos();
+    renderAdmin();
 
-    const shareRow=document.createElement('div');
-    shareRow.className='share-row';
+    const id = new URLSearchParams(location.search).get("video");
+    if(id) openWatch(id);
 
-    const copy=document.createElement('button');
-    copy.className='small-btn';
-    copy.type='button';
-    copy.textContent='Copy link';
-    copy.onclick=()=>copyVideoLink(video.id);
-
-    const share=document.createElement('button');
-    share.className='small-btn';
-    share.type='button';
-    share.textContent='Share';
-    share.onclick=()=>shareVideo(video.id);
-
-    const open=document.createElement('button');
-    open.className='small-btn';
-    open.type='button';
-    open.textContent='Open player';
-    open.onclick=()=>openWatch(video.id);
-
-    shareRow.append(copy,share,open);
-    info.append(title,date,shareRow);
-    card.append(player,info);
-    grid.append(card);
-  });
+  }catch(error){
+    $("videoGrid").innerHTML =
+      '<div class="empty">Unable to load videos.</div>';
+    toast(error.message);
+  }
 }
 
-function copyVideoLink(id){
-  const link=makeVideoLink(id);
+function renderVideos(){
+  const grid = $("videoGrid");
+  const search = $("search").value.toLowerCase();
 
-  if(navigator.clipboard && window.isSecureContext){
-    navigator.clipboard.writeText(link)
-      .then(()=>showToast('Video link copied!'))
-      .catch(()=>showToast(link));
-  }else{
-    showToast('Link: '+link);
+  grid.replaceChildren();
+
+  const filtered = videos.filter(v=>
+    v.title.toLowerCase().includes(search)
+  );
+
+  if(!filtered.length){
+    grid.innerHTML = '<div class="empty">No videos found.</div>';
+    return;
+  }
+
+  for(const video of filtered){
+    const card = document.createElement("article");
+    card.className = "video-card";
+
+    const player = document.createElement("video");
+    player.src = video.url;
+    player.controls = true;
+    player.preload = "metadata";
+    player.playsInline = true;
+
+    const info = document.createElement("div");
+    info.className = "video-info";
+
+    const title = document.createElement("h3");
+    title.textContent = video.title;
+
+    const date = document.createElement("p");
+    date.className = "video-date";
+    date.textContent = "Display date: " + video.date;
+
+    const actions = document.createElement("div");
+    actions.className = "share-row";
+
+    const copy = document.createElement("button");
+    copy.className = "small-btn";
+    copy.textContent = "Copy link";
+    copy.onclick = ()=>copyLink(video.id);
+
+    const share = document.createElement("button");
+    share.className = "small-btn";
+    share.textContent = "Share";
+    share.onclick = ()=>shareVideo(video.id);
+
+    const open = document.createElement("button");
+    open.className = "small-btn";
+    open.textContent = "Open player";
+    open.onclick = ()=>openWatch(video.id);
+
+    actions.append(copy,share,open);
+    info.append(title,date,actions);
+    card.append(player,info);
+    grid.append(card);
+  }
+}
+
+async function copyLink(id){
+  const link = videoLink(id);
+  try{
+    await navigator.clipboard.writeText(link);
+    toast("Video link copied!");
+  }catch{
+    window.prompt("Copy this link:",link);
   }
 }
 
 async function shareVideo(id){
-  const link=makeVideoLink(id);
-
+  const link = videoLink(id);
   if(navigator.share){
     try{
-      await navigator.share({title:'Watch on SURYA',url:link});
-    }catch(error){}
+      await navigator.share({
+        title:"Watch on SURYA",
+        url:link
+      });
+    }catch{}
   }else{
-    copyVideoLink(id);
+    copyLink(id);
   }
 }
 
 function openWatch(id){
-  const video=videos.find(item=>String(item.id)===String(id));
-  const panel=document.getElementById('watchPanel');
+  const video = videos.find(v=>String(v.id)===String(id));
+  const panel = $("watchPanel");
+
+  panel.style.display = "block";
 
   if(!video){
-    panel.style.display='block';
-    document.getElementById('watchTitle').textContent='Video not available in this browser session';
-    document.getElementById('watchDate').textContent='Permanent public playback will work after video storage and database are connected.';
-    document.getElementById('watchPlayer').removeAttribute('src');
+    $("watchTitle").textContent = "Video not found";
+    $("watchDate").textContent = "This video is unavailable.";
+    $("watchPlayer").removeAttribute("src");
+    $("watchPlayer").load();
   }else{
-    panel.style.display='block';
-    document.getElementById('watchPlayer').src=video.url;
-    document.getElementById('watchTitle').textContent=video.title;
-    document.getElementById('watchDate').textContent='Published date: '+video.displayDate;
-    document.getElementById('watchCopy').onclick=()=>copyVideoLink(video.id);
-    document.getElementById('watchShare').onclick=()=>shareVideo(video.id);
+    $("watchPlayer").src = video.url;
+    $("watchTitle").textContent = video.title;
+    $("watchDate").textContent = "Display date: " + video.date;
+    $("watchCopy").onclick = ()=>copyLink(video.id);
+    $("watchShare").onclick = ()=>shareVideo(video.id);
   }
 
-  panel.scrollIntoView({behavior:'smooth'});
+  panel.scrollIntoView({behavior:"smooth"});
 }
 
-document.getElementById('uploadForm').addEventListener('submit',function(event){
+$("uploadForm").addEventListener("submit",async function(event){
   event.preventDefault();
 
-  const title=document.getElementById('videoTitle').value.trim();
-  const file=document.getElementById('videoFile').files[0];
-  const displayDate=document.getElementById('videoDate').value;
-  const password=document.getElementById('uploadPassword').value;
-
-  if(!title||!file||!displayDate||!password){
-    showToast('Please complete all upload fields.');
+  if(!configured()){
+    toast("Connect Supabase first.");
     return;
   }
 
-  const allowed=['video/mp4','video/webm','video/ogg'];
+  const title = $("videoTitle").value.trim();
+  const file = $("videoFile").files[0];
+  const date = $("videoDate").value;
+  const password = $("uploadPassword").value;
 
-  if(!allowed.includes(file.type)){
-    showToast('Please select an MP4, WebM or OGG video.');
+  if(!title || !file || !date || !password){
+    toast("Please complete all fields.");
     return;
   }
 
-  /*
-    SECURITY NOTE:
-    This is the front-end structure only. Do not put a real password here.
-    A secure backend must verify the password and save the video permanently.
-    Until that backend is connected, this browser preview is not a public upload.
-  */
-  showToast('Upload backend connection is required to verify password and publish video.');
+  if(!["video/mp4","video/webm","video/quicktime"].includes(file.type)){
+    toast("Only MP4, WebM and MOV are supported.");
+    return;
+  }
+
+  if(file.size > 50*1024*1024){
+    toast("Maximum video size is 50 MB.");
+    return;
+  }
+
+  const button = $("uploadButton");
+  button.disabled = true;
+  button.textContent = "Uploading...";
+
+  try{
+    const form = new FormData();
+    form.append("password",password);
+    form.append("title",title);
+    form.append("display_date",date);
+    form.append("video",file);
+
+    const response = await fetch(
+      SUPABASE_URL + "/functions/v1/" + UPLOAD_FUNCTION,
+      {
+        method:"POST",
+        headers:{
+          apikey:SUPABASE_PUBLISHABLE_KEY
+        },
+        body:form
+      }
+    );
+
+    const result = await response.json();
+
+    if(!response.ok || !result.success){
+      throw new Error(result.error || "Upload failed");
+    }
+
+    this.reset();
+    toast("Video uploaded successfully!");
+
+    await loadVideos();
+
+    if(result.video && result.video.id){
+      openWatch(result.video.id);
+    }
+
+  }catch(error){
+    toast(error.message || "Upload failed");
+  }finally{
+    $("uploadPassword").value = "";
+    button.disabled = false;
+    button.textContent = "Upload Video +";
+  }
 });
 
 function renderAdmin(){
-  const list=document.getElementById('adminList');
-  list.innerHTML='';
+  const list = $("adminList");
+  list.replaceChildren();
 
-  videos.forEach(video=>{
-    const row=document.createElement('div');
-    row.className='admin-video';
+  for(const video of videos){
+    const row = document.createElement("div");
+    row.className = "admin-video";
 
-    const title=document.createElement('span');
-    title.textContent=video.title+' — '+video.displayDate;
+    const title = document.createElement("span");
+    title.textContent = video.title + " — " + video.date;
 
-    const actions=document.createElement('div');
-    actions.className='admin-actions';
+    const copy = document.createElement("button");
+    copy.className = "small-btn";
+    copy.textContent = "Copy link";
+    copy.onclick = ()=>copyLink(video.id);
 
-    const copy=document.createElement('button');
-    copy.className='small-btn';
-    copy.type='button';
-    copy.textContent='Copy link';
-    copy.onclick=()=>copyVideoLink(video.id);
-
-    const remove=document.createElement('button');
-    remove.className='delete';
-    remove.textContent='Remove';
-
-    remove.onclick=()=>{
-      URL.revokeObjectURL(video.url);
-      videos=videos.filter(v=>v.id!==video.id);
-      renderVideos();
-      renderAdmin();
-      showToast('Preview removed.');
-    };
-
-    actions.append(copy,remove);
-    row.append(title,actions);
+    row.append(title,copy);
     list.append(row);
-  });
+  }
 }
 
-document.getElementById('year').textContent=new Date().getFullYear();
+$("search").addEventListener("input",renderVideos);
+$("year").textContent = new Date().getFullYear();
 
-const requestedVideo=new URLSearchParams(window.location.search).get('video');
-
-if(requestedVideo){
-  openWatch(requestedVideo);
-}
+loadVideos();
 </script>
 </body>
 </html>
