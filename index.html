@@ -347,6 +347,7 @@ footer{
     <a class="logo" href="#home">SURYA<span>.</span></a>
     <p>Discover. Create. Experience.</p>
     <p>© <span id="year"></span> SURYA. All rights reserved.</p>
+  
   </div>
 </footer>
 
@@ -360,8 +361,9 @@ footer{
 
   Never paste a service-role key or secret key here.
 */
-const SUPABASE_URL = "PASTE_SUPABASE_PROJECT_URL_HERE";
-const SUPABASE_PUBLISHABLE_KEY = "PASTE_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+const SUPABASE_URL = "https://axmouqcknhzrtdouqxdl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_P1oxePn7wr-QWKzZ2OQ0zA_oiObp-PO";
 
 const UPLOAD_FUNCTION = "surya-upload";
 let videos = [];
@@ -381,6 +383,7 @@ function toast(message){
   clearTimeout(toast.timer);
   toast.timer = setTimeout(()=>{
     element.style.display = "none";
+
   },4000);
 }
 
